@@ -1,0 +1,169 @@
+﻿@*@{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+<!DOCTYPE html>
+<html ng-app="myEvie">
+<head>
+
+</head>
+<body class="alert alert-info">
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/JSData/AngularFile.js"></script>
+
+    <table class="table-bordered">
+        <tr>
+            <td width="20%" style="overflow-y:scroll">
+                <div ng-controller="GendersController">
+                    <div ng-bind="title" class="fw-bold" style="text-align:center;font-size:20px; font-style:italic;color:darkred"></div>
+
+                    <br />
+
+                    <table class="table table-primary" style="overflow:scroll;background-color:azure" border="1">
+                        <tr>
+                            <!--<th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+
+            <th> Edit </th>-->
+                            @*<th> Delete </th>*@
+                        </tr>
+                        <tr ng-repeat="x in Companydataholder" class="card text-black bg-primary mb-3" style="max-width: 18rem">
+                            <td class="card-header">
+                                {{x.Id}}
+                            </td>
+                            <td class="card-body">
+                                {{x.Name}}
+                            </td>
+
+
+                            <td class="card-footer">
+                                <button ng-click="edit(x.Id, x.Name )" class="btn-primary">Select</button>
+
+
+                        </tr>
+
+                    </table>
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <div style="text-align:center;font-style:oblique;font-weight:bold">Name </div> <input type="text" ng-model="Name" />
+                    <br />
+                    <div style="padding-top:1em;">
+                        <button ng-click="addToTable()" class="btn-success"> Add </button>
+                        <button ng-click="editToTable(Id,Name)" class="btn-warning">Update</button>
+                        <button ng-click="deleteToTable(Id,Name)" class="btn-danger">Delete</button>
+                    </div>
+                </div>
+
+                <div ng-bind="message"></div>
+
+            </td>
+            <td width="80%">
+
+                <div ng-controller="EmployeesController">
+
+                    <div ng-bind="title" class="fw-bold" style="text-align:center;font-size:20px; font-style:italic;color:darkred"></div>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Gender
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                IsActive
+                            </th>
+                            <th>
+                                JoiningDate
+                            </th>
+                            @*<th> Edit </th>
+                            <th> Delete </th>*@
+                        </tr>
+                        <tr ng-repeat="x in tabledataholder">
+                            <td>
+                                {{x.GName}}
+                            </td>
+                            <td>
+                                {{x.Name}}
+                            </td>
+
+                            <td>
+
+                                <input id="IsActive" type="checkbox" ng-model="x.IsActive" checked="{{x.IsActive}}" />
+
+                            </td>
+                            <td>
+
+                                {{ x.JoiningDate.slice(6,-2) | date:'dd-MM-yyyy'  }}
+                            </td>
+
+                            <td>
+                                <button ng-click="edit(x.Id, x.Name ,x.IsActive ,x.JoiningDate,x.GenderId)" class="btn-secondary">Select</button>
+                            </td>
+                      
+                        </tr>
+
+                    </table>
+                    <div style="padding-top:2em;">
+                        <div class="form-control">
+                            Gender <select id="GenderId" ng-model="GenderId">
+                                <option value="" selected hidden>---Add Gender---</option>
+                                <option ng-repeat="x in Companydataholder" value="{{x.Id}}">{{x.Name}}
+                               </option>
+
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            Name: <input id="Name" ng-model="Name" /> <br />
+                        </div>
+                        <div class="form-control">
+                            IsActive: <input id="IsActive" type="checkbox" ng-model="IsActive" checked="{{IsActive}}" /> <br />
+                        </div>
+                        <div class="form-control">
+                            JoiningDate :  <input type="date" ng-model="JoiningDate" value="{{JoiningDate}}" />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div style="padding-left:15em;">
+                        <button ng-click="addToTable(Id ,Name,IsActive ,JoiningDate,GenderId)" class="btn-success"> Add </button>
+                        <button ng-click="editToTable(Id ,Name,IsActive ,JoiningDate,GenderId)" class="btn-warning"> Edit </button>
+                        <button ng-click="deleteToTable(Id ,Name,IsActive ,JoiningDate,GenderId)" class="btn-danger"> Delete </button>
+                    </div>
+                    <div ng-bind="message"></div>
+
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
